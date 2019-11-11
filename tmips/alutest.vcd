@@ -1,0 +1,62 @@
+$date
+	Sun Nov  3 23:30:38 2019
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module alutest $end
+$var wire 1 ! zero $end
+$var wire 32 " res [31:0] $end
+$var reg 4 # aluc [3:0] $end
+$var reg 32 $ opa [31:0] $end
+$var reg 32 % opb [31:0] $end
+$scope module alu1 $end
+$var wire 4 & alucontrol [3:0] $end
+$var wire 32 ' srca [31:0] $end
+$var wire 32 ( srcb [31:0] $end
+$var reg 32 ) aluout [31:0] $end
+$var reg 1 ! zero $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b10 )
+b11111111111111111111111111111010 (
+b11 '
+b0 &
+b11111111111111111111111111111010 %
+b11 $
+b0 #
+b10 "
+0!
+$end
+#1000
+b11111111111111111111111111111011 "
+b11111111111111111111111111111011 )
+b1 #
+b1 &
+#2000
+b11111111111111111111111111111101 "
+b11111111111111111111111111111101 )
+b10 #
+b10 &
+#3000
+b1001 "
+b1001 )
+b110 #
+b110 &
+#4000
+b0 "
+b0 )
+b111 #
+b111 &
+#5000
+b100 "
+b100 )
+b1100 #
+b1100 &
+#6000
