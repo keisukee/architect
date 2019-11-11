@@ -29,6 +29,7 @@ module maindec(
        6'b001000: controls <= 12'b100010000000; //ADDI
        6'b001111: controls <= 12'b110010000011; //LUI
        6'b001101: controls <= 12'b101010000011; //ORI
+       6'b001100: controls <= 12'b101010000010; //ANDI
        6'b000010: controls <= 12'b000000001000; //J
        default:   controls <= 12'bxxxxxxxxxxxx; //???
      endcase
@@ -46,11 +47,13 @@ module aludec(
         3'b000: alucontrol <= 4'b0010; // addition
         3'b001: alucontrol <= 4'b0110; // subtraction
         3'b011: alucontrol <= 4'b0001; // or
+        3'b010: alucontrol <= 4'b0000; //ADD
         default: case (funct) // Rtype (aluop is 100)
           6'b100000: alucontrol <= 4'b0010; //ADD
           6'b100010: alucontrol <= 4'b0110; //SUB
           6'b100100: alucontrol <= 4'b0000; //AND
           6'b100101: alucontrol <= 4'b0001; //OR
+          6'b100111: alucontrol <= 4'b1100; //NOR
           6'b101010: alucontrol <= 4'b0111; //SLT
           default:   alucontrol <= 4'bxxxx; //???
         endcase
@@ -96,11 +99,13 @@ module testcont;
    initial begin
       $dumpfile("testcont.vcd");
       $dumpvars(0, testcont);
-      zero = 0; op = 0; funct = 'h20; #1
-      op = 'h2b #1
-      op = 'h04 #1
-      op = 'h08 #1
-      op = 'h02 #1
+      zero = 0; op = 0; funct = 6'b100101; #1
+      op = 'h2b; #1
+      op = 'h04; #1
+      op = 'h08; #1
+      op = 'h02; #1
+      op = 0; funct = 'h27; #1 // NOR
+      op = 'h0c; #1 // ANDI
       $finish;
    end
 endmodule // testcont
