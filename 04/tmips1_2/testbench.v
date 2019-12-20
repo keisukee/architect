@@ -6,26 +6,26 @@ module testbench();
 
    reg	clk;
    reg	reset;
-	
+
    wire [31:0] writedata, dataaddr;
    wire        memwrite;
-	
+
    // instantiate device to be tested
    top dut (clk, reset, writedata, dataaddr, memwrite);
-	
+
    // initialize test
    initial begin
       $dumpfile("testb.vcd");
       $dumpvars(0, testbench);
       reset <= 1; # 22; reset <= 0;
    end
-		
+
    // generate clock to sequence tests
    always
      begin
 	clk <= 1; #5; clk <= 0; #5;
      end
-		
+
    // check results
    always @ (negedge clk)
      begin
